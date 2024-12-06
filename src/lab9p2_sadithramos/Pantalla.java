@@ -44,6 +44,7 @@ public class Pantalla extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println("Error");
         }
+        
     }
 
     /**
@@ -442,11 +443,7 @@ public class Pantalla extends javax.swing.JFrame {
             }catch(Exception e){
                 System.out.println("ERROR INESPERADO");
             }
-            try{
-                modeloLista.remove(torneo);
-            }catch(Exception e){
-                System.out.println("ERROR RANDOM");
-            }
+           
             
         }
     }//GEN-LAST:event_MarcarGanadorActionPerformed
