@@ -16,12 +16,19 @@ public class Torneo {
   public boolean flag;
   public boolean continua;
   public String ganador;
-  
-    public Torneo(String nombre, boolean flag, boolean continua, ArrayList<String> listap) {
+
+    public Torneo(String nombre, boolean flag, boolean continua, String ganador,ArrayList<String> listap) {
         this.nombre = nombre;
         this.flag = flag;
         this.continua = continua;
+        this.ganador = ganador;
         this.listap = listap;
+    }
+  
+    
+
+    public Torneo(String ganador) {
+        this.ganador = ganador;
     }
 
     public boolean isContinua() {

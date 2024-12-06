@@ -4,12 +4,14 @@
  */
 package lab9p2_sadithramos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
 public class Pantalla extends javax.swing.JFrame {
-
+ static ArrayList <Torneo> torneos = new ArrayList();
     /**
      * Creates new form Pantalla
      */
@@ -39,7 +41,7 @@ public class Pantalla extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         CrearTorneo = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Nombre_Torneo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Crear = new javax.swing.JButton();
         jSpinner1 = new javax.swing.JSpinner();
@@ -48,8 +50,19 @@ public class Pantalla extends javax.swing.JFrame {
         Participante = new javax.swing.JButton();
         Admin = new javax.swing.JButton();
 
+        PantallaAdmin.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                PantallaAdminWindowClosing(evt);
+            }
+        });
+
         crear.setBackground(new java.awt.Color(0, 0, 255));
         crear.setText("Crear Torneo");
+        crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jt_Torneo);
 
@@ -124,6 +137,11 @@ public class Pantalla extends javax.swing.JFrame {
 
         Crear.setBackground(new java.awt.Color(0, 0, 255));
         Crear.setText("Crear Torneo");
+        Crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CrearTorneoLayout = new javax.swing.GroupLayout(CrearTorneo.getContentPane());
         CrearTorneo.getContentPane().setLayout(CrearTorneoLayout);
@@ -136,7 +154,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGroup(CrearTorneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Nombre_Torneo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(CrearTorneoLayout.createSequentialGroup()
                         .addGap(154, 154, 154)
@@ -149,7 +167,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Nombre_Torneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -220,7 +238,28 @@ public class Pantalla extends javax.swing.JFrame {
         PantallaAdmin.pack();
         PantallaAdmin.setLocationRelativeTo(null);
         PantallaAdmin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_AdminActionPerformed
+
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        // TODO add your handling code here:
+        CrearTorneo.pack();
+        CrearTorneo.setLocationRelativeTo(null);
+        CrearTorneo.setVisible(true);
+        
+    }//GEN-LAST:event_crearActionPerformed
+
+    private void CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearActionPerformed
+        String nombre = Nombre_Torneo.getText();
+        ArrayList<String> p = new ArrayList();
+        Torneo t = new Torneo(nombre,true,true,"",p);
+        torneos.add(t);
+        
+    }//GEN-LAST:event_CrearActionPerformed
+
+    private void PantallaAdminWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_PantallaAdminWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_PantallaAdminWindowClosing
 
     /**
      * @param args the command line arguments
@@ -261,6 +300,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton Admin;
     private javax.swing.JButton Crear;
     private javax.swing.JDialog CrearTorneo;
+    private javax.swing.JTextField Nombre_Torneo;
     private javax.swing.JTextField Nombre_Usuario;
     private javax.swing.JDialog PantallaAdmin;
     private javax.swing.JButton Participante;
@@ -275,7 +315,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> jt_Torneo;
     private javax.swing.JList<String> jt_participantes;
     // End of variables declaration//GEN-END:variables
