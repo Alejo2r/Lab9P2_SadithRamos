@@ -4,6 +4,9 @@
  */
 package lab9p2_sadithramos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -13,7 +16,9 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class Pantalla extends javax.swing.JFrame {
- static ArrayList <Torneo> torneos = new ArrayList();
+
+    static ArrayList<Torneo> torneos = new ArrayList();
+
     /**
      * Creates new form Pantalla
      */
@@ -21,6 +26,10 @@ public class Pantalla extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jt_Torneo.setModel(modeloLista);
+        jt_participantes.setModel(modelo);
+        TorneoC.setModel(TorneoCerrado);
+        TorneoG.setModel(TorneoGanado);
+        TorneosDisponibles.setModel(modeloLista);
     }
 
     /**
@@ -49,6 +58,16 @@ public class Pantalla extends javax.swing.JFrame {
         Crear = new javax.swing.JButton();
         rondas = new javax.swing.JTextField();
         PantallaParticipante = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TorneosDisponibles = new javax.swing.JList<>();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TorneoC = new javax.swing.JList<>();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TorneoG = new javax.swing.JList<>();
+        unirse = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Nombre_Usuario = new javax.swing.JTextField();
         Participante = new javax.swing.JButton();
@@ -197,15 +216,68 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Torneos Disponibles");
+
+        jScrollPane3.setViewportView(TorneosDisponibles);
+
+        jLabel7.setText("Torneos Cerrados");
+
+        jScrollPane4.setViewportView(TorneoC);
+
+        jLabel8.setText("Torneos Ganados");
+
+        jScrollPane5.setViewportView(TorneoG);
+
+        unirse.setBackground(new java.awt.Color(0, 0, 255));
+        unirse.setText("Unirse al torneo");
+        unirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unirseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PantallaParticipanteLayout = new javax.swing.GroupLayout(PantallaParticipante.getContentPane());
         PantallaParticipante.getContentPane().setLayout(PantallaParticipanteLayout);
         PantallaParticipanteLayout.setHorizontalGroup(
             PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGroup(PantallaParticipanteLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jLabel6)
+                .addGap(125, 125, 125)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(50, 50, 50))
+            .addGroup(PantallaParticipanteLayout.createSequentialGroup()
+                .addGroup(PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PantallaParticipanteLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PantallaParticipanteLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(unirse)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         PantallaParticipanteLayout.setVerticalGroup(
             PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGroup(PantallaParticipanteLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(unirse)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -267,13 +339,18 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void CerrarTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarTorneoActionPerformed
         // TODO add your handling code here:
-       int opcion = jt_Torneo.getSelectedIndex();
-       if(opcion == -1){
-           JOptionPane.showMessageDialog(this, "NO SELECCIONO UN TORNEO");
-       }else{
-          modeloLista.remove(opcion);
-          torneos.get(opcion).setFlag(false);
-       }
+        int opcion = jt_Torneo.getSelectedIndex();
+        if (opcion == -1) {
+            JOptionPane.showMessageDialog(this, "NO SELECCIONO UN TORNEO");
+        } else {
+            try{
+            TorneoCerrado.addElement(torneos.get(opcion));
+            modeloLista.remove(opcion);            
+            torneos.get(opcion).setContinua(false);
+            }catch(Exception e){
+                System.out.println("ERROR RANDOM");
+            }
+        }
     }//GEN-LAST:event_CerrarTorneoActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
@@ -289,13 +366,13 @@ public class Pantalla extends javax.swing.JFrame {
         CrearTorneo.pack();
         CrearTorneo.setLocationRelativeTo(null);
         CrearTorneo.setVisible(true);
-        
+
     }//GEN-LAST:event_crearActionPerformed
 
     private void CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearActionPerformed
         String nombre = Nombre_Torneo.getText();
         ArrayList<String> p = new ArrayList();
-        Torneo t = new Torneo(nombre,true,true,"",p);
+        Torneo t = new Torneo(nombre, true, true, "", p);
         torneos.add(t);
         modeloLista.addElement(t);
     }//GEN-LAST:event_CrearActionPerformed
@@ -311,28 +388,68 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void ParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParticipanteActionPerformed
         // TODO add your handling code here:
-        PantallaParticipante.pack();
-        PantallaParticipante.setLocationRelativeTo(null);
-        PantallaParticipante.setVisible(true);
-        this.setVisible(false);
-        
+        if (Nombre_Usuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre!");
+        } else {
+            PantallaParticipante.pack();
+            PantallaParticipante.setLocationRelativeTo(null);
+            PantallaParticipante.setVisible(true);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_ParticipanteActionPerformed
 
     private void MarcarGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcarGanadorActionPerformed
         // TODO add your handling code here:
         int opcion = jt_participantes.getSelectedIndex();
+        int torneo = jt_Torneo.getSelectedIndex();
         String nombre = jt_participantes.getSelectedValue();
-       if(opcion == -1){
-           JOptionPane.showMessageDialog(this, "NO SELECCIONO UN GANADOR");
-       }else{
-          torneos.get(opcion).setGanador(nombre);
-       }
+        if (opcion == -1) {
+            JOptionPane.showMessageDialog(this, "NO SELECCIONO UN GANADOR");
+        } else {
+            torneos.get(opcion).setGanador(nombre);
+            JOptionPane.showMessageDialog(this, nombre+" ha ganado el torneo");
+            TorneoGanado.addElement(torneos.get(torneo));
+            File ganador = new File("./Desktop");
+            try{
+             BufferedWriter bw = new BufferedWriter(new FileWriter(ganador,false));
+             bw.write(torneos.get(torneo).getListap().get(opcion)+" ha ganado el torneo");
+             bw.close();
+            }catch(Exception e){
+                System.out.println("ERROR INESPERADO");
+            }
+            try{
+                modeloLista.remove(torneo);
+            }catch(Exception e){
+                System.out.println("ERROR RANDOM");
+            }
+            
+        }
     }//GEN-LAST:event_MarcarGanadorActionPerformed
 
     private void jt_TorneoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jt_TorneoValueChanged
         // TODO add your handling code here:
-        System.out.println("hola");
+        int opcion = jt_Torneo.getSelectedIndex();
+        for (int i = 0; i < torneos.get(opcion).getListap().size(); i++) {
+            modelo.addElement(torneos.get(opcion).getListap().get(i));
+        }
+
     }//GEN-LAST:event_jt_TorneoValueChanged
+
+    private void unirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unirseActionPerformed
+        // TODO add your handling code here:
+        int opcion = TorneosDisponibles.getSelectedIndex();
+        if (opcion == -1){
+        JOptionPane.showMessageDialog(this, "NO SELECCIONO UN TORNEO/TORNEO CERRADO");
+  
+        } 
+        else{
+            torneos.get(opcion).getListap().add(Nombre_Usuario.getText());
+            JOptionPane.showMessageDialog(this, "Ha ingresado al torneo");
+
+        }
+
+    }//GEN-LAST:event_unirseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +486,9 @@ public class Pantalla extends javax.swing.JFrame {
         });
     }
     DefaultListModel modeloLista = new DefaultListModel();
+    DefaultListModel modelo = new DefaultListModel();
+    DefaultListModel TorneoGanado = new DefaultListModel();
+    DefaultListModel TorneoCerrado = new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin;
     private javax.swing.JButton CerrarTorneo;
@@ -380,16 +500,26 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JDialog PantallaAdmin;
     private javax.swing.JDialog PantallaParticipante;
     private javax.swing.JButton Participante;
+    private javax.swing.JList<String> TorneoC;
+    private javax.swing.JList<String> TorneoG;
+    private javax.swing.JList<String> TorneosDisponibles;
     private javax.swing.JButton crear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JList<String> jt_Torneo;
     private javax.swing.JList<String> jt_participantes;
     private javax.swing.JTextField rondas;
+    private javax.swing.JButton unirse;
     // End of variables declaration//GEN-END:variables
 }
