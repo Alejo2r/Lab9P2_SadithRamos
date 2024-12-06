@@ -27,26 +27,172 @@ public class Pantalla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        PantallaAdmin = new javax.swing.JDialog();
+        crear = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_Torneo = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_participantes = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        CrearTorneo = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        Crear = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        Nombre_Usuario = new javax.swing.JTextField();
+        Participante = new javax.swing.JButton();
+        Admin = new javax.swing.JButton();
+
+        crear.setBackground(new java.awt.Color(0, 0, 255));
+        crear.setText("Crear Torneo");
+
+        jScrollPane1.setViewportView(jt_Torneo);
+
+        jLabel2.setText("Torneos");
+
+        jLabel3.setText("Personas dentro del Torneo");
+
+        jScrollPane2.setViewportView(jt_participantes);
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setText("Cerrar Torneo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setText("Marcar Ganador ");
+
+        javax.swing.GroupLayout PantallaAdminLayout = new javax.swing.GroupLayout(PantallaAdmin.getContentPane());
+        PantallaAdmin.getContentPane().setLayout(PantallaAdminLayout);
+        PantallaAdminLayout.setHorizontalGroup(
+            PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PantallaAdminLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(74, 74, 74))
+            .addGroup(PantallaAdminLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(80, 80, 80))
+            .addGroup(PantallaAdminLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PantallaAdminLayout.createSequentialGroup()
+                        .addComponent(crear)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PantallaAdminLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))))
+        );
+        PantallaAdminLayout.setVerticalGroup(
+            PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PantallaAdminLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addGroup(PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(121, 121, 121))
+        );
+
+        jLabel4.setText("Nombre del Torneo");
+
+        jLabel5.setText("Rondas");
+
+        Crear.setBackground(new java.awt.Color(0, 0, 255));
+        Crear.setText("Crear Torneo");
+
+        javax.swing.GroupLayout CrearTorneoLayout = new javax.swing.GroupLayout(CrearTorneo.getContentPane());
+        CrearTorneo.getContentPane().setLayout(CrearTorneoLayout);
+        CrearTorneoLayout.setHorizontalGroup(
+            CrearTorneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CrearTorneoLayout.createSequentialGroup()
+                .addGroup(CrearTorneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CrearTorneoLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(CrearTorneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CrearTorneoLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(Crear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+        CrearTorneoLayout.setVerticalGroup(
+            CrearTorneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CrearTorneoLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(Crear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre de Usuario: ");
+
+        Participante.setBackground(new java.awt.Color(51, 51, 255));
+        Participante.setText("Participante");
+
+        Admin.setBackground(new java.awt.Color(255, 0, 0));
+        Admin.setText("Administrador");
+        Admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(Participante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Admin)
+                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
+                        .addGap(183, 183, 183)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                        .addGap(155, 155, 155)
+                        .addComponent(Nombre_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -54,12 +200,27 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addComponent(Nombre_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Participante)
+                    .addComponent(Admin))
+                .addGap(103, 103, 103))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
+        // TODO add your handling code here:
+        PantallaAdmin.pack();
+        PantallaAdmin.setLocationRelativeTo(null);
+        PantallaAdmin.setVisible(true);
+    }//GEN-LAST:event_AdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,7 +258,25 @@ public class Pantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Admin;
+    private javax.swing.JButton Crear;
+    private javax.swing.JDialog CrearTorneo;
+    private javax.swing.JTextField Nombre_Usuario;
+    private javax.swing.JDialog PantallaAdmin;
+    private javax.swing.JButton Participante;
+    private javax.swing.JButton crear;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> jt_Torneo;
+    private javax.swing.JList<String> jt_participantes;
     // End of variables declaration//GEN-END:variables
 }
