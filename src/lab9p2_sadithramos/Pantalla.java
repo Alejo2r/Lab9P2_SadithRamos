@@ -6,7 +6,11 @@ package lab9p2_sadithramos;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -16,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class Pantalla extends javax.swing.JFrame {
-
+    static File ganador = new File("./Usuario.txt");
     static ArrayList<Torneo> torneos = new ArrayList();
 
     /**
@@ -30,6 +34,16 @@ public class Pantalla extends javax.swing.JFrame {
         TorneoC.setModel(TorneoCerrado);
         TorneoG.setModel(TorneoGanado);
         TorneosDisponibles.setModel(modeloLista);
+        try{
+            File archivo = new File("./ Torneos");
+            FileInputStream f = new FileInputStream(archivo);
+            ObjectInputStream objetowr = new ObjectInputStream(f);
+            Object objeto = objetowr.readObject();
+            ArrayList<Torneo> tempo = (ArrayList<Torneo>)objeto;
+            torneos = tempo;
+        }catch(Exception e){
+            System.out.println("Error");
+        }
     }
 
     /**
@@ -375,6 +389,16 @@ public class Pantalla extends javax.swing.JFrame {
         Torneo t = new Torneo(nombre, true, true, "", p);
         torneos.add(t);
         modeloLista.addElement(t);
+        File archivo = new File("./Torneos.txt");
+        try{
+            FileOutputStream fs = new FileOutputStream(archivo);
+            ObjectOutputStream objectwr = new ObjectOutputStream(fs);
+            objectwr.writeObject(torneos);
+            objectwr.close();
+            JOptionPane.showMessageDialog(this, "SE HA GUARDADO SU TORNEO");
+        }catch(Exception e){
+            System.out.println("Error inesperado");
+        }
     }//GEN-LAST:event_CrearActionPerformed
 
     private void PantallaAdminWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_PantallaAdminWindowClosing
@@ -410,10 +434,10 @@ public class Pantalla extends javax.swing.JFrame {
             torneos.get(opcion).setGanador(nombre);
             JOptionPane.showMessageDialog(this, nombre+" ha ganado el torneo");
             TorneoGanado.addElement(torneos.get(torneo));
-            File ganador = new File("./Usuario.txt");
+            
             try{
              BufferedWriter bw = new BufferedWriter(new FileWriter(ganador,false));
-             bw.write(torneos.get(torneo).getListap().get(opcion)+" ha ganado el torneo");
+             bw.write("El participante "+torneos.get(torneo).getListap().get(opcion)+" ha ganado el torneo "+torneos.get(torneo).getNombre());
              bw.close();
             }catch(Exception e){
                 System.out.println("ERROR INESPERADO");
