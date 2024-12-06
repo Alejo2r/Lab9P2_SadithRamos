@@ -410,7 +410,7 @@ public class Pantalla extends javax.swing.JFrame {
             torneos.get(opcion).setGanador(nombre);
             JOptionPane.showMessageDialog(this, nombre+" ha ganado el torneo");
             TorneoGanado.addElement(torneos.get(torneo));
-            File ganador = new File("./Desktop");
+            File ganador = new File("./Usuario.txt");
             try{
              BufferedWriter bw = new BufferedWriter(new FileWriter(ganador,false));
              bw.write(torneos.get(torneo).getListap().get(opcion)+" ha ganado el torneo");
