@@ -6,6 +6,7 @@ package lab9p2_sadithramos;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,14 +40,15 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jt_participantes = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CerrarTorneo = new javax.swing.JButton();
+        MarcarGanador = new javax.swing.JButton();
         CrearTorneo = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
         Nombre_Torneo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Crear = new javax.swing.JButton();
         rondas = new javax.swing.JTextField();
+        PantallaParticipante = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         Nombre_Usuario = new javax.swing.JTextField();
         Participante = new javax.swing.JButton();
@@ -66,6 +68,11 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        jt_Torneo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jt_TorneoValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jt_Torneo);
 
         jLabel2.setText("Torneos");
@@ -74,16 +81,21 @@ public class Pantalla extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jt_participantes);
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setText("Cerrar Torneo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CerrarTorneo.setBackground(new java.awt.Color(255, 0, 0));
+        CerrarTorneo.setText("Cerrar Torneo");
+        CerrarTorneo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CerrarTorneoActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setText("Marcar Ganador ");
+        MarcarGanador.setBackground(new java.awt.Color(255, 0, 0));
+        MarcarGanador.setText("Marcar Ganador ");
+        MarcarGanador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarcarGanadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PantallaAdminLayout = new javax.swing.GroupLayout(PantallaAdmin.getContentPane());
         PantallaAdmin.getContentPane().setLayout(PantallaAdminLayout);
@@ -97,9 +109,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
             .addGroup(PantallaAdminLayout.createSequentialGroup()
                 .addGap(111, 111, 111)
-                .addComponent(jButton1)
+                .addComponent(CerrarTorneo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(MarcarGanador)
                 .addGap(80, 80, 80))
             .addGroup(PantallaAdminLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
@@ -128,8 +140,8 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(PantallaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(CerrarTorneo)
+                    .addComponent(MarcarGanador))
                 .addGap(121, 121, 121))
         );
 
@@ -179,12 +191,34 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(83, 83, 83))
         );
 
+        PantallaParticipante.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                PantallaParticipanteWindowClosing(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PantallaParticipanteLayout = new javax.swing.GroupLayout(PantallaParticipante.getContentPane());
+        PantallaParticipante.getContentPane().setLayout(PantallaParticipanteLayout);
+        PantallaParticipanteLayout.setHorizontalGroup(
+            PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 511, Short.MAX_VALUE)
+        );
+        PantallaParticipanteLayout.setVerticalGroup(
+            PantallaParticipanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 568, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre de Usuario: ");
 
         Participante.setBackground(new java.awt.Color(51, 51, 255));
         Participante.setText("Participante");
+        Participante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ParticipanteActionPerformed(evt);
+            }
+        });
 
         Admin.setBackground(new java.awt.Color(255, 0, 0));
         Admin.setText("Administrador");
@@ -231,9 +265,16 @@ public class Pantalla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CerrarTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarTorneoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+       int opcion = jt_Torneo.getSelectedIndex();
+       if(opcion == -1){
+           JOptionPane.showMessageDialog(this, "NO SELECCIONO UN TORNEO");
+       }else{
+          modeloLista.remove(opcion);
+          torneos.get(opcion).setFlag(false);
+       }
+    }//GEN-LAST:event_CerrarTorneoActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
@@ -262,6 +303,36 @@ public class Pantalla extends javax.swing.JFrame {
     private void PantallaAdminWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_PantallaAdminWindowClosing
         this.setVisible(true);
     }//GEN-LAST:event_PantallaAdminWindowClosing
+
+    private void PantallaParticipanteWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_PantallaParticipanteWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_PantallaParticipanteWindowClosing
+
+    private void ParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParticipanteActionPerformed
+        // TODO add your handling code here:
+        PantallaParticipante.pack();
+        PantallaParticipante.setLocationRelativeTo(null);
+        PantallaParticipante.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_ParticipanteActionPerformed
+
+    private void MarcarGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcarGanadorActionPerformed
+        // TODO add your handling code here:
+        int opcion = jt_participantes.getSelectedIndex();
+        String nombre = jt_participantes.getSelectedValue();
+       if(opcion == -1){
+           JOptionPane.showMessageDialog(this, "NO SELECCIONO UN GANADOR");
+       }else{
+          torneos.get(opcion).setGanador(nombre);
+       }
+    }//GEN-LAST:event_MarcarGanadorActionPerformed
+
+    private void jt_TorneoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jt_TorneoValueChanged
+        // TODO add your handling code here:
+        System.out.println("hola");
+    }//GEN-LAST:event_jt_TorneoValueChanged
 
     /**
      * @param args the command line arguments
@@ -300,15 +371,16 @@ public class Pantalla extends javax.swing.JFrame {
     DefaultListModel modeloLista = new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin;
+    private javax.swing.JButton CerrarTorneo;
     private javax.swing.JButton Crear;
     private javax.swing.JDialog CrearTorneo;
+    private javax.swing.JButton MarcarGanador;
     private javax.swing.JTextField Nombre_Torneo;
     private javax.swing.JTextField Nombre_Usuario;
     private javax.swing.JDialog PantallaAdmin;
+    private javax.swing.JDialog PantallaParticipante;
     private javax.swing.JButton Participante;
     private javax.swing.JButton crear;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
