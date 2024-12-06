@@ -72,6 +72,11 @@ public class Torneo {
     public void setGanador(String ganador) {
         this.ganador = ganador;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre;
+    }
   
   
   

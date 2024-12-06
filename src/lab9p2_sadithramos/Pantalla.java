@@ -5,6 +5,7 @@
 package lab9p2_sadithramos;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         initComponents();
         setLocationRelativeTo(null);
+        jt_Torneo.setModel(modeloLista);
     }
 
     /**
@@ -44,7 +46,7 @@ public class Pantalla extends javax.swing.JFrame {
         Nombre_Torneo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Crear = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        rondas = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Nombre_Usuario = new javax.swing.JTextField();
         Participante = new javax.swing.JButton();
@@ -155,7 +157,7 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(Nombre_Torneo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(rondas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(CrearTorneoLayout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(Crear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -171,7 +173,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rondas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(Crear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
@@ -254,7 +256,7 @@ public class Pantalla extends javax.swing.JFrame {
         ArrayList<String> p = new ArrayList();
         Torneo t = new Torneo(nombre,true,true,"",p);
         torneos.add(t);
-        
+        modeloLista.addElement(t);
     }//GEN-LAST:event_CrearActionPerformed
 
     private void PantallaAdminWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_PantallaAdminWindowClosing
@@ -295,7 +297,7 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
     }
-
+    DefaultListModel modeloLista = new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin;
     private javax.swing.JButton Crear;
@@ -314,8 +316,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JList<String> jt_Torneo;
     private javax.swing.JList<String> jt_participantes;
+    private javax.swing.JTextField rondas;
     // End of variables declaration//GEN-END:variables
 }
